@@ -4,6 +4,7 @@ import { Button, Container, Col, Row, Card } from 'react-bootstrap'
 import './../styles/SuccessBody.css'
 import PostTweets from "./PostTweets";
 import MyTweets from "./MyTweets";
+import { url } from "./Url";
 let tweets = []
 export default function SuccessBody2(props) {
     let [myTweets, setMyTweets] = useState(tweets)
@@ -11,7 +12,7 @@ export default function SuccessBody2(props) {
     let navigate = useNavigate();
     console.log(location)
     function fetchMyTweets() {
-        fetch(`username/${location.state.userName}`, {
+        fetch(`${url}/username/${location.state.userName}`, {
             method: 'GET',
             headers: { 
             'Authorization':`Bearer ${localStorage.getItem("jwt")}` 

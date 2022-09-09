@@ -1,0 +1,1 @@
+export const url = 'https://cors-everywhere.herokuapp.com/https://tweetapp-env.eba-2zy62ps4.us-east-1.elasticbeanstalk.com/api/v1.0/tweets'

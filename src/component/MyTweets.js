@@ -1,6 +1,7 @@
 import { Container}from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import MytweetList from "./MytweetList";
+import { url } from "./Url";
 let tweets = []
 let dummy = []
 const MyTweets = (props) => {
@@ -16,7 +17,7 @@ const MyTweets = (props) => {
         // 'Authorization':`Bearer ${localStorage.getItem("jwt")}` 
         // },
         // })
-        fetch(`/publish`,{
+        fetch(`${url}/publish`,{
             method:'POST',
             headers:{
                 'Authorization':`Bearer ${localStorage.getItem("jwt")}`

@@ -5,12 +5,13 @@ import { Card, ModalHeader } from "react-bootstrap"
 import { FaUserSecret } from "react-icons/fa"
 import { useLocation, useNavigate } from "react-router-dom"
 import MytweetList from "./MytweetList"
+import { url } from "./Url";
 
 export function ShowUserList(props){
     let[listTweet,setlistTweet]=useState([])
     let[showsTweets,setshowTweet]=useState(false)
     function fetchMyTweets() {
-        fetch(`username/${props.users.username}`, {
+        fetch(`${url}/username/${props.users.username}`, {
             method: 'GET',
             headers: { 
             'Authorization':`Bearer ${localStorage.getItem("jwt")}` 

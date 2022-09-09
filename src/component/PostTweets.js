@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router';
 import SendIcon from "@mui/icons-material/Send";
 import SuccessBody2 from './SucessBody2.js';
+import { url } from "./Url";
 const PostTweets = (props) => {
     const [tweetContent, setTweetContent] = useState('')
     let navigate = useNavigate();
@@ -19,7 +20,7 @@ const PostTweets = (props) => {
                 alert("enter tweet content")
             }
             else {
-                fetch(`username/${props.userName}/add`, {
+                fetch(`${url}/username/${props.userName}/add`, {
                     method: 'POST',
                     headers: { 
                     'Content-Type': 'application/json' ,

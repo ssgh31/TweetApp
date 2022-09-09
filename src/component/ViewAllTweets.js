@@ -3,13 +3,14 @@ import { Container } from "react-bootstrap";
 import MytweetList from "./MytweetList";
 import { useLocation } from "react-router-dom";
 import Menu from "./NavBar"
+import { url } from "./Url";
 let tweets = [];
 export default function ViewAllTweets() {
   let [allTweet, setAllTweet] = useState(tweets);
   const location=useLocation();
   console.log("viewlocation",location)
   function fetchallTweet() {
-    fetch(`all`, {
+    fetch(`${url}/all`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,

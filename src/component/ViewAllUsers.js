@@ -5,6 +5,7 @@ import { FaUserSecret } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import Menu from "./NavBar"
 import { ShowUserList } from "./ShowUsersList";
+import { url } from "./Url";
 export function ViewAllUsers()
 {
     let username=''
@@ -12,7 +13,7 @@ export function ViewAllUsers()
     let location =useLocation();
     let navigate=useNavigate();
     function fetchallUsers(){
-        fetch(`getallusers`,{
+        fetch(`${url}/getallusers`,{
             method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,

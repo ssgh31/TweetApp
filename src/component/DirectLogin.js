@@ -3,6 +3,7 @@ import { Container, Form, Button } from "react-bootstrap"
 import { useNavigate ,useLocation} from "react-router"
 import Header from "./Header"
 import "../styles/Login.css"
+import { url } from "./Url"
 
 export default function DirectLogin() {
     const [username, setUserName] = useState('')
@@ -14,7 +15,7 @@ export default function DirectLogin() {
         if(username!=='')
         {
         let form={username,password}
-        fetch(`/login`,{
+        fetch(`${url}/login`,{
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form)

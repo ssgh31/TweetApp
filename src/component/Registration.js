@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import Header from "./Header";
 import "../styles/Registration.css"
 import { Form, Button, Container } from 'react-bootstrap';
+import { url } from "./Url";
 
 export default function Registration() {
     let navigate = useNavigate();
@@ -31,7 +32,7 @@ export default function Registration() {
 
             console.log(form.firstname)
             console.log(JSON.stringify(form))
-            fetch(`/signup`, {
+            fetch(`${url}/signup`, {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form)

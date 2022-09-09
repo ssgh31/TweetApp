@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { FaTwitterSquare } from "react-icons/fa";
 import "../styles/ForgotPassword.css"
 import CommonHeader from './CommonHeader'
+import { url } from "./Url"
 
 export default function ForgotPassword() {
     const [userid, setUserId] = useState('')
@@ -18,7 +19,7 @@ export default function ForgotPassword() {
         userData.password = password
         console.log(userData)
         if (userid !== "" && password !== "") {
-            fetch(`updatepassword`, {
+            fetch(`${url}/updatepassword`, {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
