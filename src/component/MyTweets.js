@@ -11,23 +11,23 @@ const MyTweets = (props) => {
         console.log(name);
         console.log(tweetid);
         let form={name,tweetid}
-        // fetch(`${name}/delete/${tweetId}`,{
-        // method: 'DELETE',
-        // headers: { 
-        // 'Authorization':`Bearer ${localStorage.getItem("jwt")}` 
-        // },
-        // })
-        fetch(`${url}/publish`,{
-            method:'POST',
-            headers:{
-                'Authorization':`Bearer ${localStorage.getItem("jwt")}`
-                ,'Content-Type': "application/json"
-            },
-            body: JSON.stringify({
-                username: name,
-                tweetId: tweetid
-            })
+        fetch(`${url}/${name}/delete/${tweetId}`,{
+        method: 'DELETE',
+        headers: { 
+        'Authorization':`Bearer ${localStorage.getItem("jwt")}` 
+        },
         })
+        // fetch(`${url}/publish`,{
+        //     method:'POST',
+        //     headers:{
+        //         'Authorization':`Bearer ${localStorage.getItem("jwt")}`
+        //         ,'Content-Type': "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         username: name,
+        //         tweetId: tweetid
+        //     })
+        // })
         .then(res => {
             console.log(res.status);
             props.updateList()
