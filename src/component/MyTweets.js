@@ -11,7 +11,7 @@ const MyTweets = (props) => {
         console.log(name);
         console.log(tweetid);
         let form={name,tweetid}
-        fetch(`${url}/${name}/delete/${tweetId}`,{
+        fetch(`${url}/${name}/delete/${tweetid}`,{
         method: 'DELETE',
         headers: { 
         'Authorization':`Bearer ${localStorage.getItem("jwt")}` 
