@@ -10,6 +10,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "react-bootstrap";
+import { url } from "./Url";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
@@ -21,8 +22,6 @@ import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
-import { url } from "./Url"
-
 let comments = [];
 const MytweetList = (props) => {
   let [comment, setComments] = useState(comments);
@@ -72,13 +71,20 @@ const MytweetList = (props) => {
     })
       .then((res) => {
         console.log(res);
-        return res.json();
+        if(res.status===404)
+        {
+          setShowComment(true);
+          alert("No Comment found");
+        }
+        else{
+        return res.json().then((data) => {
+          comment = data;
+       
+          setComments(comment);
+          setShowComment(true);
+        });
+        }
       })
-      .then((data) => {
-        comment = data;
-        setComments(comment);
-      });
-    setShowComment(true);
     console.log(comment);
   }
 
@@ -110,7 +116,6 @@ const MytweetList = (props) => {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     }).then((res) => {
-      console.log(res);
       if (res.status === 200) {
         fetchallLikes();
         setlikeButon("error");
@@ -170,7 +175,7 @@ const MytweetList = (props) => {
                 }}
               >
                 <ButtonGroup
-                  variant="outlined"
+                  variant="outlined"  
                   aria-label="outlined button group"
                 >
                   <Button
@@ -182,7 +187,7 @@ const MytweetList = (props) => {
                     <DeleteForeverIcon />
                   </Button>
                   <Button onClick={UpdateHandler} disabled={buttondiable}>
-                    Edit Tweet !{" "}
+                    Update your Tweet!!{" "}
                   </Button>
                   <Button onClick={CommentHandler}>
                     <CommentRoundedIcon />
@@ -213,14 +218,14 @@ const MytweetList = (props) => {
                 <tr>
                   <th>UserName</th>
                   <th>Reply</th>
-                  <th>Time</th>
+                  <th>Time Published</th>
                 </tr>
               </thead>
               {comment.map((reply, k) => (
                 <tr>
                   <td>{reply.userName}</td>
                   <td>{reply.reply}</td>
-                  <td>{reply.date}</td>
+                  <td>{reply.date[0]+"/"+reply.date[1]+"/"+reply.date[2]}</td>
                 </tr>
               ))}
             </Table>
