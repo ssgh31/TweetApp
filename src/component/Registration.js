@@ -30,7 +30,7 @@ export default function Registration() {
         } else {
             let customerId = Math.floor(Math.random() * (999 - 100 + 1) + 100);
 
-            console.log(form.firstname)
+            console.log(form.firstName)
             console.log(JSON.stringify(form))
             fetch(`${url}/signup`, {
                 method: 'POST',
@@ -38,7 +38,7 @@ export default function Registration() {
                 body: JSON.stringify(form)
             }).then(response => {
                 console.log(response);
-                localStorage.setItem("name",form.firstname)
+                localStorage.setItem("name",form.firstName)
                 navigate('/directlogin', { state: {  userName: form.username, name: form.firstName } })
               })
               .catch(error => {
@@ -48,13 +48,13 @@ export default function Registration() {
     }
 
     const findFormErrors = () => {
-        const { firstname, lastName, password, username,phoneNumber} = form
+        const { firstName, lastName, password, username,phoneNumber} = form
         const newErrors = {}
         const emailregex = /^([\w.%+-]+)@([\w-]+\.)+([\w]{1,})$/i;
         const nameregex = /^[aA-zZ\s]*$/
         const phone=/^[0-9]/
-        if (!firstname || firstname === '') newErrors.firstname = 'cannot be blank!'
-        else if (nameregex.test(firstname) === false) newErrors.firstname = 'can contain only letters and spaces'
+        if (!firstName || firstName === '') newErrors.firstname = 'cannot be blank!'
+        else if (nameregex.test(firstName) === false) newErrors.firstname = 'can contain only letters and spaces'
         if (!lastName || lastName === '') newErrors.lastName = 'cannot be blank!'
         else if (nameregex.test(lastName) === false) newErrors.lastName = 'can contain only letters and spaces'
         if (emailregex.test(username) === false) newErrors.email = "invalid email(should contain a '.' & '@')"
@@ -72,7 +72,7 @@ export default function Registration() {
 
                 <Form.Group className="mb-3">
                     <Form.Label id="fname">First Name:</Form.Label>
-                    <Form.Control type="text" aria-labelledby="fname" name="fname" placeholder="Firstname" onChange={e => setField('firstname', e.target.value)} isInvalid={!!errors.firstName} />
+                    <Form.Control type="text" aria-labelledby="fname" name="fname" placeholder="Firstname" onChange={e => setField('firstName', e.target.value)} isInvalid={!!errors.firstName} />
                     <Form.Control.Feedback type='invalid' data-testid="nameerr">
                         {errors.firstname}
                     </Form.Control.Feedback>
