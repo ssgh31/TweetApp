@@ -71,20 +71,13 @@ const MytweetList = (props) => {
     })
       .then((res) => {
         console.log(res);
-        if(res.status===404)
-        {
-          setShowComment(true);
-          alert("No Comment found");
-        }
-        else{
-        return res.json().then((data) => {
-          comment = data;
-       
-          setComments(comment);
-          setShowComment(true);
-        });
-        }
+        return res.json();
       })
+      .then((data) => {
+        comment = data;
+        setComments(comment);
+      });
+    setShowComment(true);
     console.log(comment);
   }
 
